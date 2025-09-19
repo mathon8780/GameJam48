@@ -9,26 +9,26 @@ namespace Components
 {
     public class CharacterInputComponent : MonoBehaviour
     {
-        public UnityAction OnBow;
+        public UnityAction OnGreeting;
+        public UnityAction OnChat;
         public UnityAction OnRoar;
-        public UnityAction OnSpitting;
         public UnityAction<Vector2> OnMove;
         public UnityAction OnJump;
 
-        IAtk _iAtk;
+        IActions _iAtk;
 
         StateControlComponent stateController;
         CharacterMoveComponent characterMoveComponent;
 
         private void Awake()
         {
-            _iAtk = GetComponent<IAtk>();
+            _iAtk = GetComponent<IActions>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
             stateController = GetComponent<StateControlComponent>();
 
-            OnBow += _iAtk.Bow;
+            OnGreeting += _iAtk.Greeting;
+            OnChat += _iAtk.Chat;
             OnRoar += _iAtk.Roar;
-            OnSpitting += _iAtk.Spitting;
 
             OnMove += characterMoveComponent.OnMove;
             OnJump += characterMoveComponent.OnJump;
@@ -71,17 +71,17 @@ namespace Components
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                OnBow?.Invoke();
+                OnGreeting?.Invoke();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                OnRoar?.Invoke();
+                OnChat?.Invoke();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                OnSpitting?.Invoke();
+                OnRoar?.Invoke();
             }
         }
     }
