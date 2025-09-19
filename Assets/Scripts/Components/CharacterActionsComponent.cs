@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Components
 {
-    public class CharacterATKComponent : MonoBehaviour, IAtk
+    public class CharacterActionsComponent : MonoBehaviour, IActions
     {
         Animator animator;
 
@@ -11,16 +11,20 @@ namespace Components
         {
             animator = GetComponent<Animator>();
         }
-        public void Bow()
-        {
 
+        public void Greeting()
+        {
+        }
+
+        public void Chat()
+        {
         }
 
         public void Roar()
         {
         }
 
-        public void Spitting()
+        public void Attack()
         {
         }
     }

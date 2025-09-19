@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/AnimatorString.cs.meta
 guid: Wise4CilWn0+RFAr5N1O/UvXtyV7Nw7iDK4/Z1Ueg4/RzxWVBEaUin0=
+========
+guid: CSkfsnn/VnO31yAsUHQZJ5wNEezWZwe4G+JjHHM1pfSaIz6encG6JOE=
+>>>>>>>> d5a842a (EventCenter Attributes UIManager):Assets/Scripts/UI/HpInfo.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
