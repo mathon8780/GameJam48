@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tools;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Managers
@@ -15,13 +16,19 @@ namespace Managers
         /// </summary>
         /// <param name="action">事件回调</param>
         /// <typeparam name="T">事件类型</typeparam>
-        public void RegisterEventListener<T>(UnityAction action)
+        public void RegisterEventListener<T>(UnityAction<T> action)
         {
-            Type eventType = typeof(T);
-            if (!_eventDic.ContainsKey(eventType))
-                _eventDic.Add(eventType, null);
+            if (action == null)
+            {
+                Debug.LogError("null action");
+            }
 
-            _eventDic[eventType] = Delegate.Combine(_eventDic[eventType], action);
+            Type type = typeof(T);
+            if (!_eventDic.ContainsKey(type))
+                _eventDic.Add(type, null);
+
+            _eventDic.TryGetValue(type, out var existingDel);
+            _eventDic[type] = Delegate.Combine(existingDel, action);
         }
 
         /// <summary>
@@ -29,16 +36,25 @@ namespace Managers
         /// </summary>
         /// <param name="action">事件回调</param>
         /// <typeparam name="T">事件类型</typeparam>
-        public void UnregisterEventListener<T>(UnityAction action)
+        public void UnregisterEventListener<T>(UnityAction<T> action)
         {
-            Type eventType = typeof(T);
-            if (_eventDic.ContainsKey(eventType))
+            if (action == null)
             {
-                var currentDel = Delegate.Remove(_eventDic[eventType], action);
-                if (currentDel == null)
-                    _eventDic.Remove(eventType);
-                else
-                    _eventDic[eventType] = currentDel;
+                Debug.LogError("null action");
+                return;
+            }
+
+            Type eventType = typeof(T);
+            if (!_eventDic.ContainsKey(eventType))
+                return;
+
+            _eventDic.TryGetValue(eventType, out var existingDelegate);
+            var resultDelegate = Delegate.Remove(existingDelegate, action);
+            if (resultDelegate == null)
+                _eventDic.Remove(eventType);
+            else
+            {
+                _eventDic[eventType] = resultDelegate;
             }
         }
 

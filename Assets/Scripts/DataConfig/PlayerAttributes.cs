@@ -12,5 +12,7 @@ namespace DataConfig
         [Tooltip("跳跃高度")] public float JumpHeight;
         [Tooltip("冷静力")] public float Calmness;
         [Tooltip("防御力")] public float Defense;
+
+        [Tooltip("玩家状态")] public EPlayerState playerState = EPlayerState.Idle;
     }
 }

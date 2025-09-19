@@ -948,6 +948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e42f740c1e4b0f9476c4518162334a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpSlider: {fileID: 901788342}
+  calmness: {fileID: 122200151}
 --- !u!1 &1348074377
 GameObject:
   m_ObjectHideFlags: 0

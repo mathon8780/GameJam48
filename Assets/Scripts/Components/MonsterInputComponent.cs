@@ -1,30 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MonsterInputComponent : MonoBehaviour
+namespace Components
 {
-
-    public UnityAction OnBow;
-    public UnityAction OnRoar;
-    public UnityAction OnSpitting;
-
-    IAtk _iAtk;
-
-    private void Start()
+    public class MonsterInputComponent : MonoBehaviour
     {
-        _iAtk = GetComponent<IAtk>();
+        public UnityAction OnBow;
+        public UnityAction OnRoar;
+        public UnityAction OnSpitting;
 
-        OnBow += _iAtk.Bow;
-        OnRoar += _iAtk.Roar;
-        OnSpitting += _iAtk.Spitting;
-    }
+        IActions _iActions;
 
-    
-    private void Update()
-    {
-        
+        private void Start()
+        {
+            _iActions = GetComponent<IActions>();
+
+            OnBow += _iActions.Greeting;
+            OnRoar += _iActions.Chat;
+            OnSpitting += _iActions.Roar;
+        }
+
+
+        private void Update()
+        {
+        }
     }
 }

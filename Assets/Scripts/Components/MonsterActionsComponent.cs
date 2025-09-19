@@ -3,9 +3,13 @@ using UnityEngine;
 
 namespace Components
 {
-    public class MonsterATKComponent : MonoBehaviour, IAtk
+    public class MonsterActionsComponent : MonoBehaviour, IActions
     {
-        public void Bow()
+        public void Greeting()
+        {
+        }
+
+        public void Chat()
         {
         }
 
@@ -13,13 +17,8 @@ namespace Components
         {
         }
 
-        public void Spitting()
-        {
-        }
-
         public void Attack()
         {
-
         }
     }
 }
