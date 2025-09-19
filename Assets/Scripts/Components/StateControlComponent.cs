@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Interfaces;
 
 namespace Components
 {
@@ -8,6 +9,7 @@ namespace Components
     public class StateControlComponent : MonoBehaviour
     {
         Animator animator;
+        IAttribute attribute;
 
         [Tooltip("是否在移动")]
         [SerializeField]
@@ -26,21 +28,21 @@ namespace Components
             }
         }
 
-        [Tooltip("是否在跳跃")]
+        [Tooltip("是否在地面上")]
         [SerializeField]
-        private bool _isJumping = false;
-        public bool IsJumping
+        private bool _isGround = true;
+        public bool IsGround
         {
             get
             {
-                _isJumping = animator.GetBool(AnimatorString.isJumping);
-                return _isJumping;
+                _isGround = animator.GetBool(AnimatorString.isGround);
+                return _isGround;
             }
             set
             {
-                _isJumping = value;
-                animator.SetBool(AnimatorString.isJumping, _isJumping);
-                if(_isJumping) animator.SetTrigger(AnimatorString.Jump);
+                _isGround = value;
+                animator.SetBool(AnimatorString.isGround, _isGround);
+                if(!_isGround) animator.SetTrigger(AnimatorString.Jump);
             }
         }
 
@@ -70,7 +72,6 @@ namespace Components
             }
         }
         
-
         
         void Awake()
         {

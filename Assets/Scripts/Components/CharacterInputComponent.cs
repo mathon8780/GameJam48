@@ -15,20 +15,20 @@ namespace Components
         public UnityAction<Vector2> OnMove;
         public UnityAction OnJump;
 
-        IActions _iAtk;
+        IActions _iActions;
 
         StateControlComponent stateController;
         CharacterMoveComponent characterMoveComponent;
 
         private void Awake()
         {
-            _iAtk = GetComponent<IActions>();
+            _iActions = GetComponent<IActions>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
             stateController = GetComponent<StateControlComponent>();
 
-            OnGreeting += _iAtk.Greeting;
-            OnChat += _iAtk.Chat;
-            OnRoar += _iAtk.Roar;
+            OnGreeting += _iActions.Greeting;
+            OnChat += _iActions.Chat;
+            OnRoar += _iActions.Roar;
 
             OnMove += characterMoveComponent.OnMove;
             OnJump += characterMoveComponent.OnJump;
@@ -38,7 +38,7 @@ namespace Components
         {
 
             Move();
-            Interactive();
+            Interact();
         }
 
         void Move()
@@ -58,7 +58,7 @@ namespace Components
                 OnMove?.Invoke(Vector2.zero);
             }
 
-            //JUMP
+            //跳跃
             if (Input.GetKey(KeyCode.Space))
             {
                 //Debug.Log("Jump");
@@ -67,7 +67,7 @@ namespace Components
             }
         }
 
-        void Interactive()
+        void Interact()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {

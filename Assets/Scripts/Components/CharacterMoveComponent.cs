@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.DataConfig;
+using Interfaces;
 using Managers;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Components
 {
@@ -13,11 +15,16 @@ namespace Components
         public float jumpForce = 5f; // 跳跃速度
 
         Rigidbody2D rb;
-        Animator animator;
+        CapsuleCollider2D capsuleCollider2D;
         StateControlComponent stateController;
+        AttributesComponent attributesComponent;
 
         Vector2 moveInput = Vector2.zero;
 
+        ContactFilter2D contactFilter;
+        RaycastHit2D[] groundResults = new RaycastHit2D[5];
+
+        UnityAction groundDetection;
         //private void OnEnable()
         //{
         //    EventManager.Instance.RegisterEventListener<JumpEvent>(OnJump);
@@ -32,8 +39,9 @@ namespace Components
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
             stateController = GetComponent<StateControlComponent>();
+            attributesComponent = GetComponent<AttributesComponent>();
+            capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         }
 
         public void OnMove(Vector2 move)
@@ -44,16 +52,24 @@ namespace Components
 
         public void OnJump()
         {
-            //TODO：在动画机设置跳跃结束IsJumping为false
-            if (stateController.IsJumping) return;
+            if (!stateController.IsGround) return;
 
-            stateController.IsJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            stateController.IsGround = false;
+            groundDetection += GroungDetect;
+            rb.velocity = new Vector2(rb.velocity.x, attributesComponent.GetAttributesValue(EAttributeType.JumpHeight));
+        }
+
+        void GroungDetect()
+        {
+            stateController.IsGround = capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.1f) > 0;
+            groundDetection -= GroungDetect;
         }
 
         void Update()
         {
-            rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(moveInput.x * attributesComponent.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
+
+            groundDetection?.Invoke();
         }
     }
 }
