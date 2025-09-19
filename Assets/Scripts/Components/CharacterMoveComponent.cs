@@ -13,6 +13,7 @@ namespace Components
     {
         public float moveSpeed = 5f; // 移动速度
         public float jumpForce = 5f; // 跳跃速度
+        public float falling = 8f; // 下落速度
 
         Rigidbody2D rb;
         CapsuleCollider2D capsuleCollider2D;
@@ -21,10 +22,9 @@ namespace Components
 
         Vector2 moveInput = Vector2.zero;
 
-        ContactFilter2D contactFilter;
+        public ContactFilter2D contactFilter;
         RaycastHit2D[] groundResults = new RaycastHit2D[5];
 
-        UnityAction groundDetection;
         //private void OnEnable()
         //{
         //    EventManager.Instance.RegisterEventListener<JumpEvent>(OnJump);
@@ -42,6 +42,7 @@ namespace Components
             stateController = GetComponent<StateControlComponent>();
             attributesComponent = GetComponent<AttributesComponent>();
             capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+
         }
 
         public void OnMove(Vector2 move)
@@ -52,24 +53,25 @@ namespace Components
 
         public void OnJump()
         {
-            if (!stateController.IsGround) return;
-
-            stateController.IsGround = false;
-            groundDetection += GroungDetect;
-            rb.velocity = new Vector2(rb.velocity.x, attributesComponent.GetAttributesValue(EAttributeType.JumpHeight));
-        }
-
-        void GroungDetect()
-        {
-            stateController.IsGround = capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.1f) > 0;
-            groundDetection -= GroungDetect;
+            if (stateController.IsGround)
+            {
+                stateController.Jump();
+                rb.velocity = new Vector2(rb.velocity.x, attributesComponent.GetAttributesValue(EAttributeType.JumpHeight));
+            }
         }
 
         void Update()
         {
             rb.velocity = new Vector2(moveInput.x * attributesComponent.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
+            if(!stateController.IsGround)
+            {
+                rb.velocity -= new Vector2(0, falling * Time.deltaTime * 1.1f);
+            }
+        }
 
-            groundDetection?.Invoke();
+        private void FixedUpdate()
+        {
+            stateController.IsGround = capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.05f) > 0;
         }
     }
 }

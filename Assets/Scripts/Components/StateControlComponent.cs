@@ -42,7 +42,6 @@ namespace Components
             {
                 _isGround = value;
                 animator.SetBool(AnimatorString.isGround, _isGround);
-                if(!_isGround) animator.SetTrigger(AnimatorString.Jump);
             }
         }
 
@@ -77,5 +76,11 @@ namespace Components
         {
             animator = GetComponent<Animator>();
         }
+
+        public void Jump()
+        {
+            animator.SetTrigger(AnimatorString.Jump);
+        }
+
     }
 }

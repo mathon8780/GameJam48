@@ -27,23 +27,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!114 &-6406668986294451197
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb53e3793dfb3e4aabd0b06c70170b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boolName: isGround
-  valueOnEnter: 0
-  valueOnExit: 1
-  updateOnMachine: 0
-  updateOnState: 1
 --- !u!1102 &-6157461865410273739
 AnimatorState:
   serializedVersion: 6
@@ -56,8 +39,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6480281099108749010}
-  m_StateMachineBehaviours:
-  - {fileID: -6406668986294451197}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -82,6 +64,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: jump
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isGround
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6157461865410273739}
@@ -161,10 +146,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7460871555247690841}
-    m_Position: {x: 410, y: 140, z: 0}
+    m_Position: {x: 420, y: 140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6157461865410273739}
-    m_Position: {x: 510, y: 50, z: 0}
+    m_Position: {x: 520, y: 50, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 1042442819857932063}

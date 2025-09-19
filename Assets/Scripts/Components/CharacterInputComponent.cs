@@ -59,7 +59,7 @@ namespace Components
             }
 
             //跳跃
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 //Debug.Log("Jump");
                 //EventManager.Instance.TriggerEvent<JumpEvent>();
