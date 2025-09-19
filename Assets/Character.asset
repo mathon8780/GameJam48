@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:yousandi.cn,2023:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3f48b2967442c991c60e89c5b861fd, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  Hp: 1
+  MaxHp: 1
+  FixedHp: 1
+  MoveSpeed: 10
+  JumpHeight: 10
+  Calmness: 10
+  Defense: 5
+  playerState: 0
