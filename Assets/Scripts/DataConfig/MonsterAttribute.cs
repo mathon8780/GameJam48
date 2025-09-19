@@ -5,8 +5,9 @@ namespace DataConfig
     [CreateAssetMenu(fileName = "New MonsterAttribute", menuName = "MonsterAttribute", order = 0)]
     public class MonsterAttribute : ScriptableObject
     {
-        [Tooltip("初始素质值")] public float StartQuality;
-        [Tooltip("修正素质值")] public float FixedQuality = 0;
+        [Tooltip("初始愤怒值/红温度")] public float StartAnger;
+        [Tooltip("修正愤怒值/红温度")] public float FixedAnger = 0;
+        [Tooltip("初始修正范围")] public float StartChangeRange;
 
         [Tooltip("阈值A")] public float ThresholdA;
         [Tooltip("变换范围A")] public float ThresholdAChangeRange;
@@ -20,7 +21,7 @@ namespace DataConfig
         [Tooltip("当前错误次数 默认0")] public int CurrentMistakes = 0;
 
         [Tooltip("攻击力")] public float Atk;
-        [Tooltip("愤怒值/红温度")] public float Rage;
+        [Tooltip("红温增幅")] public float AngerIncreaseRate;
         [Tooltip("冷静阈值 默认40")] public float CalmnessThreshold = 40;
     }
 }
