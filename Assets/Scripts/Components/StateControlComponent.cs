@@ -7,7 +7,7 @@ namespace Components
     /// </summary>
     public class StateControlComponent : MonoBehaviour
     {
-        public Animator animator;
+        Animator animator;
 
         [Tooltip("是否在移动")]
         [SerializeField]
@@ -26,6 +26,37 @@ namespace Components
             }
         }
 
+        [Tooltip("是否在跳跃")]
+        [SerializeField]
+        private bool _isJumping = false;
+        public bool IsJumping
+        {
+            get
+            {
+                _isJumping = animator.GetBool(AnimatorString.isJumping);
+                return _isJumping;
+            }
+            set
+            {
+                _isJumping = value;
+                animator.SetBool(AnimatorString.isJumping, _isJumping);
+                if(_isJumping) animator.SetTrigger(AnimatorString.Jump);
+            }
+        }
+
+        [Tooltip("是否存活")]
+        [SerializeField]
+        private bool _isAlive = true;
+        public bool IsAlive
+        {
+            get { return _isAlive; }
+            set
+            {
+                _isAlive = value;
+                animator.SetBool(AnimatorString.isAlive, _isAlive);
+            }
+        }
+
         [Tooltip("是否在交互")]
         [SerializeField]
         private bool _isInteracting = false;
@@ -39,10 +70,8 @@ namespace Components
             }
         }
         
-        public void OnJump()
-        {
-            animator.SetTrigger(AnimatorString.isJumping);
-        }
+
+        
         void Awake()
         {
             animator = GetComponent<Animator>();

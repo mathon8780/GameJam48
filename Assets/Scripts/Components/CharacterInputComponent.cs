@@ -1,5 +1,7 @@
 ﻿using System;
+using Assets.Scripts.DataConfig;
 using Interfaces;
+using Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,17 +36,19 @@ namespace Components
 
         private void Update()
         {
+
             Move();
             Interactive();
         }
 
         void Move()
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            //左右移动
+            if (Input.GetKey(KeyCode.A))
             {
                 OnMove?.Invoke(Vector2.left);
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 OnMove?.Invoke(Vector2.right);
             }
@@ -55,8 +59,10 @@ namespace Components
             }
 
             //JUMP
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
+                //Debug.Log("Jump");
+                //EventManager.Instance.TriggerEvent<JumpEvent>();
                 OnJump?.Invoke();
             }
         }

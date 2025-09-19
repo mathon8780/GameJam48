@@ -16,5 +16,10 @@ namespace Components
         public void Spitting()
         {
         }
+
+        public void Attack()
+        {
+
+        }
     }
 }

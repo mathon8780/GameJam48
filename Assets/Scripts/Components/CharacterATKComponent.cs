@@ -13,15 +13,22 @@ namespace Components
         }
         public void Bow()
         {
-
+            animator.SetTrigger(AnimatorString.Bow);
         }
 
         public void Roar()
         {
+            animator.SetTrigger(AnimatorString.Roar);
         }
 
         public void Spitting()
         {
+            animator.SetTrigger(AnimatorString.Spitting);
+        }
+
+        public void Attack()
+        {
+            animator.SetTrigger(AnimatorString.Attack);
         }
     }
 }

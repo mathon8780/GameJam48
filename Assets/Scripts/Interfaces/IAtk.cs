@@ -5,5 +5,6 @@
         void Bow();
         void Roar();
         void Spitting();
+        void Attack();
     }
 }
