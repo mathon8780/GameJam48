@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Components/MonsterATKComponent.cs.meta
-guid: B3sYvHmkVn/GumDPpGkmzjrpIo7FL35k/YE39BCs+75DWnD+5ZCJtPI=
-========
-guid: CSkfsnn/VnO31yAsUHQZJ5wNEezWZwe4G+JjHHM1pfSaIz6encG6JOE=
->>>>>>>> d5a842a1918c955df4801d2d1bd11baf3bff2d57:Assets/Scripts/UI/HpInfo.cs.meta
+guid: CygYsyypVnsovGBflQHFNt97s9amIPUtTpNqxynrj3IJ/VnnX+Ku5vA=
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
