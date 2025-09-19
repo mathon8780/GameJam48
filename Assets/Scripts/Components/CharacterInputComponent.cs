@@ -1,5 +1,7 @@
 ﻿using System;
+using Assets.Scripts.DataConfig;
 using Interfaces;
+using Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,26 +9,26 @@ namespace Components
 {
     public class CharacterInputComponent : MonoBehaviour
     {
-        public UnityAction OnBow;
+        public UnityAction OnGreeting;
+        public UnityAction OnChat;
         public UnityAction OnRoar;
-        public UnityAction OnSpitting;
         public UnityAction<Vector2> OnMove;
         public UnityAction OnJump;
 
-        IActions _iActions;
+        IActions _iAtk;
 
         StateControlComponent stateController;
         CharacterMoveComponent characterMoveComponent;
 
         private void Awake()
         {
-            _iActions = GetComponent<IActions>();
+            _iAtk = GetComponent<IActions>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
             stateController = GetComponent<StateControlComponent>();
 
-            OnBow += _iActions.Greeting;
-            OnRoar += _iActions.Chat;
-            OnSpitting += _iActions.Roar;
+            OnGreeting += _iAtk.Greeting;
+            OnChat += _iAtk.Chat;
+            OnRoar += _iAtk.Roar;
 
             OnMove += characterMoveComponent.OnMove;
             OnJump += characterMoveComponent.OnJump;
@@ -34,18 +36,19 @@ namespace Components
 
         private void Update()
         {
+
             Move();
             Interactive();
         }
 
         void Move()
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            //左右移动
+            if (Input.GetKey(KeyCode.A))
             {
                 OnMove?.Invoke(Vector2.left);
             }
-
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 OnMove?.Invoke(Vector2.right);
             }
@@ -56,8 +59,10 @@ namespace Components
             }
 
             //JUMP
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
+                //Debug.Log("Jump");
+                //EventManager.Instance.TriggerEvent<JumpEvent>();
                 OnJump?.Invoke();
             }
         }
@@ -66,17 +71,17 @@ namespace Components
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                OnBow?.Invoke();
+                OnGreeting?.Invoke();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                OnRoar?.Invoke();
+                OnChat?.Invoke();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                OnSpitting?.Invoke();
+                OnRoar?.Invoke();
             }
         }
     }
