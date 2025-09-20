@@ -71,4 +71,9 @@ namespace Managers
         public EUpgradeAttribute attributeType;
         public float varValue;
     }
+
+    public class WrongInteractive
+    {
+        public float damage;
+    }
 }

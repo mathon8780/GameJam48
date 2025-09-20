@@ -46,6 +46,7 @@ namespace Components
             _boxAreaDetection.TakeInteraction(EInteractiveType.Roar);
         }
 
+
         public void Attack()
         {
             animator.SetTrigger(AnimatorString.Attack);
