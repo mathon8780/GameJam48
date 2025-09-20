@@ -22,6 +22,6 @@ namespace Interfaces
         /// <summary>
         /// 正确的交互
         /// </summary>
-        void CorrectCorrect();
+        void Correct();
     }
 }

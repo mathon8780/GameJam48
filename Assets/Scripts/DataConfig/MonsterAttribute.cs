@@ -6,6 +6,10 @@ namespace DataConfig
     [CreateAssetMenu(fileName = "New MonsterAttribute", menuName = "MonsterAttribute", order = 0)]
     public class MonsterAttribute : ScriptableObject
     {
+        [Tooltip("移动速度")] public float MoveSpeed;
+        [Tooltip("左侧移动距离")] public float LeftDistance;
+        [Tooltip("右侧移动距离")] public float RightDistance;
+
         [Tooltip("初始愤怒值/红温度")] public float StartAnger;
         [Tooltip("修正愤怒值/红温度")] public float FixedAnger = 0;
         [Tooltip("初始修正范围")] public float StartChangeRange;

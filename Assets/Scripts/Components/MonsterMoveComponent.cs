@@ -1,4 +1,5 @@
 using System;
+using Interfaces;
 using UnityEngine;
 
 namespace Components
@@ -8,10 +9,10 @@ namespace Components
     /// </summary>
     public class MonsterMoveComponent : MonoBehaviour
     {
+        IMonsterAttribute _monsterAttribute;
         [Tooltip("移动速度")] public float speed = 5f;
-        [Tooltip("从中心点向左移动的最大距离")] public float leftDistance = 5f;
-        [Tooltip("从中心点向右移动的最大距离")] public float rightDistance = 5f;
-
+        [Tooltip("从中心点向左移动的最大距离")] public float leftDistance;
+        [Tooltip("从中心点向右移动的最大距离")] public float rightDistance;
         [Tooltip("当前的移动状态")] public MoveState moveState = MoveState.MoveRight; // 初始状态可以设置为向右移动
 
         private Vector2 _defaultPosition; // 初始中心位置
@@ -20,6 +21,10 @@ namespace Components
 
         void Start()
         {
+            _monsterAttribute = GetComponent<IMonsterAttribute>();
+            leftDistance = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.LeftDistance);
+            rightDistance = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.RightDistance);
+
             // 获取并保存初始位置作为中心点
             _defaultPosition = transform.position;
 
@@ -36,6 +41,7 @@ namespace Components
 
         private void Update()
         {
+            speed = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.MoveSpeed);
             // 根据当前状态进行移动
             if (moveState == MoveState.MoveLeft)
             {

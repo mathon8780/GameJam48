@@ -1,5 +1,7 @@
 ﻿using System;
+using DataConfig;
 using Interfaces;
+using Tools;
 using UnityEngine;
 
 namespace Detection
@@ -8,7 +10,7 @@ namespace Detection
     /// 范围检测
     /// 绑定在角色身上 减少检测盒子的使用
     /// </summary>
-    public class BoxAreaDetection : MonoBehaviour
+    public class BoxAreaDetection : MonoBehaviour, IDetectionInteraction
     {
         //玩家的属性操作接口
         IAttribute _playerAttribute;
@@ -16,10 +18,13 @@ namespace Detection
         //怪物属性接口
         IMonsterAttribute _monsterAttribute;
 
+        //怪物交互接口
+        IReaction _monsterReaction;
+
 
         private void Start()
         {
-            _playerAttribute = GetComponent<IAttribute>();
+            _playerAttribute = GetComponentInParent<IAttribute>();
             if (_playerAttribute == null)
                 Debug.LogError("BoxAreaDetection: IAttribute component not found on the GameObject.");
         }
@@ -29,7 +34,6 @@ namespace Detection
             //检测到怪物  玩家可互动
             if (other.CompareTag("Monster"))
             {
-                // _playerAttribute = other.GetComponent<IAttribute>();
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, true);
             }
         }
@@ -40,9 +44,13 @@ namespace Detection
             //离开怪物  玩家不可互动
             if (other.collider.CompareTag("Monster"))
             {
-                // _playerAttribute = other.collider.GetComponent<IAttribute>();
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, false);
             }
+        }
+
+        public void TakeInteraction(EInteractiveType type)
+        {
+            _monsterReaction?.Interactive(type);
         }
     }
 }

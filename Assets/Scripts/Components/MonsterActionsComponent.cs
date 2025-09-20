@@ -18,9 +18,9 @@ namespace Components
         }
 
         /// <summary>
-        /// 产生交互接口
+        /// 产生交互接口 根据玩家的交互类型产生反应
         /// </summary>
-        /// <param name="interactiveType"></param>
+        /// <param name="interactiveType">使用的交互对象</param>
         public void Interactive(EInteractiveType interactiveType)
         {
             EInteractiveType targetType = EInteractiveType.None;
@@ -49,16 +49,12 @@ namespace Components
                 targetType = EInteractiveType.Roar;
             }
 
+            //交互成功判定
             if (interactiveType != targetType)
-            {
-                _monsterAttribute.SetAttributesValue(EMonsterAttributeType.CurrentMistakes, 1);
-            }
+                Wrong();
             else
-            {
-                CorrectCorrect();
-            }
+                Correct();
         }
-
 
         /// <summary>
         /// 受击接口
@@ -71,8 +67,16 @@ namespace Components
         /// <summary>
         /// 正确的交互
         /// </summary>
-        public void CorrectCorrect()
+        public void Correct()
         {
+        }
+
+        /// <summary>
+        /// 错误的交互
+        /// </summary>
+        private void Wrong()
+        {
+            _monsterAttribute.SetAttributesValue(EMonsterAttributeType.CurrentMistakes, 1);
         }
     }
 }

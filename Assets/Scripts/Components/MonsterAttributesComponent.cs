@@ -34,6 +34,12 @@ namespace Components
         {
             switch (attributeType)
             {
+                case EMonsterAttributeType.MoveSpeed:
+                    return _runTimeAttributes.MoveSpeed;
+                case EMonsterAttributeType.LeftDistance:
+                    return _runTimeAttributes.LeftDistance;
+                case EMonsterAttributeType.RightDistance:
+                    return _runTimeAttributes.RightDistance;
                 case EMonsterAttributeType.StartAnger:
                     return _runTimeAttributes.StartAnger;
                 case EMonsterAttributeType.FixedAnger:
@@ -76,6 +82,9 @@ namespace Components
         {
             switch (attributeType)
             {
+                case EMonsterAttributeType.MoveSpeed:
+                    _runTimeAttributes.MoveSpeed += varValue;
+                    break;
                 case EMonsterAttributeType.StartAnger:
                     _runTimeAttributes.StartAnger += varValue;
                     break;
