@@ -18,5 +18,10 @@ namespace Interfaces
         /// </summary>
         /// <param name="attacker">攻击者</param>
         void Attacked(IAttribute attacker);
+
+        /// <summary>
+        /// 正确的交互
+        /// </summary>
+        void CorrectCorrect();
     }
 }
