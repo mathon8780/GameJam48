@@ -68,7 +68,7 @@ MonoBehaviour:
   speed: 5
   leftDistance: 5
   rightDistance: 5
-  moveState: 2
+  moveState: 1
 --- !u!114 &7660143501994013382
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ namespace Components
 {
     public class MonsterAttributesComponent : MonoBehaviour, IMonsterAttribute
     {
+        Animator animator;
+
         //关联属性
         [SerializeField] private MonsterAttribute attributes;
 
@@ -24,6 +26,8 @@ namespace Components
 
             _runTimeAttributes = Instantiate(attributes);
             InitAttributes(_runTimeAttributes);
+
+            animator = GetComponent<Animator>();
         }
 
         private void InitAttributes(MonsterAttribute runTimeAttributes)
@@ -168,6 +172,13 @@ namespace Components
         /// <param name="state"></param>
         public void SetMonsterState(EMonsterState state)
         {
+            _runTimeAttributes.MonsterState = state;
+            switch(state)
+            {
+                case EMonsterState.Patrol:
+                    animator.SetBool(AnimatorString.isMoving, true);
+                    break;
+            }
         }
 
         public EUpgradeAttribute GetUpgradeAttribute()

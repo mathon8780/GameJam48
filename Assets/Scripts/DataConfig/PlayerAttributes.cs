@@ -6,7 +6,7 @@ namespace DataConfig
     [CreateAssetMenu(fileName = "New PlayerAttribute", menuName = "Player Attribute", order = 0)]
     public class PlayerAttributes : ScriptableObject
     {
-        Vector<float> proporty = new Vector<float>(100);
+        
         [Tooltip("基础血量")] public float Hp;
         [Tooltip("最大血量")] public float MaxHp;
         // [Tooltip("修正血量")] public float FixedHp;
@@ -14,7 +14,6 @@ namespace DataConfig
         [Tooltip("跳跃高度")] public float JumpHeight;
         [Tooltip("冷静力")] public float Calmness;
         [Tooltip("防御力")] public float Defense;
-        proporty[EAttributeType.HP]
 
         [Tooltip("玩家状态")] public EPlayerState playerState = EPlayerState.Idle;
 
