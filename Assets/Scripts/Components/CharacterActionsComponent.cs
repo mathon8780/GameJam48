@@ -55,6 +55,8 @@ namespace Components
         public void BeAttacked()
         {
             animator.SetTrigger(AnimatorString.BeAttacked);
+
+
         }
     }
 }
