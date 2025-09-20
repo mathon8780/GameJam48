@@ -47,7 +47,7 @@ namespace Components
         {
             Debug.Log(rb.velocity);
             rb.velocity = new Vector2(moveInput.x * _iAttributes.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
-            if(!_iAttributes.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
+            if (!_iAttributes.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
                 rb.velocity += new Vector2(0, -9.8f * Time.deltaTime * 1.1f);
             }
@@ -55,7 +55,9 @@ namespace Components
 
         private void FixedUpdate()
         {
-            _iAttributes.SetRunTimeAttributeValue(ERunTimeAttributeType.IsGround, capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.05f) > 0);
+            int hitCount = capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.05f);
+            bool isGround = hitCount > 0;
+            _iAttributes.SetRunTimeAttributeValue(ERunTimeAttributeType.IsGround, isGround);
         }
     }
 }

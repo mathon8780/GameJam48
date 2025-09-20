@@ -46,6 +46,7 @@ namespace Detection
             //离开怪物  玩家不可互动
             if (other.CompareTag("Monster"))
             {
+                _monsterReaction = null;
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, false);
             }
         }

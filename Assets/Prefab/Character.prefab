@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6122435794270235039}
   - component: {fileID: 7403673414108864903}
   - component: {fileID: 502325501565964016}
-  m_Layer: 0
+  m_Layer: 9
   m_HasEditorInfo: 1
   m_Name: MonsterDetectionZone
   m_TagString: Untagged
@@ -101,8 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6679070915076347124}
   - component: {fileID: 2929803780476681551}
-  - component: {fileID: 5438906453162693336}
-  m_Layer: 0
+  m_Layer: 9
   m_HasEditorInfo: 1
   m_Name: Attack
   m_TagString: Untagged
@@ -154,24 +153,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.37593424
---- !u!114 &5438906453162693336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5033043961614781876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d53b9358e8c9a419a9519f2323b745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6089032709807256182
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,10 +176,10 @@ GameObject:
   - component: {fileID: 7221650294373719761}
   - component: {fileID: 6699287519731561099}
   - component: {fileID: 1942226371700580865}
-  m_Layer: 0
+  m_Layer: 9
   m_HasEditorInfo: 1
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,6 +238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a20caad92e944269e99e8c161155338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftKey: 97
+  rightKey: 100
+  jumpKey: 32
+  attackKey: 106
+  greetingKey: 49
+  chatKey: 50
+  roarKey: 51
 --- !u!114 &4342174697540056887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +376,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!70 &1942226371700580865
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

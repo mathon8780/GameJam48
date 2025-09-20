@@ -41,38 +41,38 @@ namespace Components
             }
         }
 
-        private void Update()
-        {
-            speed = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.MoveSpeed);
-            // 根据当前状态进行移动
-            if (moveState == MoveState.MoveLeft)
-            {
-                _monsterAttribute.SetMonsterState(EMonsterState.Patrol);
-                // 向左移动
-                transform.position = Vector2.MoveTowards(transform.position, _leftTargetPosition, speed * Time.deltaTime);
-
-                // 如果到达或超过左侧目标点，则切换到向右移动
-                if (transform.position.x <= _leftTargetPosition.x)
-                {
-                    transform.localScale = new Vector2(-1f, transform.localScale.y);
-                    moveState = MoveState.MoveRight;
-                }
-            }
-            else if (moveState == MoveState.MoveRight)
-            {
-                _monsterAttribute.SetMonsterState(EMonsterState.Patrol);
-                // 向右移动
-                transform.position = Vector2.MoveTowards(transform.position, _rightTargetPosition, speed * Time.deltaTime);
-
-                // 如果到达或超过右侧目标点，则切换到向左移动
-                if (transform.position.x >= _rightTargetPosition.x)
-                {
-                    transform.localScale = new Vector2(1f, transform.localScale.y);
-                    moveState = MoveState.MoveLeft;
-                }
-            }
-            // 如果是Idle状态，则不做任何移动
-        }
+        // private void Update()
+        // {
+        //     speed = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.MoveSpeed);
+        //     // 根据当前状态进行移动
+        //     if (moveState == MoveState.MoveLeft)
+        //     {
+        //         _monsterAttribute.SetMonsterState(EMonsterState.Patrol);
+        //         // 向左移动
+        //         transform.position = Vector2.MoveTowards(transform.position, _leftTargetPosition, speed * Time.deltaTime);
+        //
+        //         // 如果到达或超过左侧目标点，则切换到向右移动
+        //         if (transform.position.x <= _leftTargetPosition.x)
+        //         {
+        //             transform.localScale = new Vector2(-1f, transform.localScale.y);
+        //             moveState = MoveState.MoveRight;
+        //         }
+        //     }
+        //     else if (moveState == MoveState.MoveRight)
+        //     {
+        //         _monsterAttribute.SetMonsterState(EMonsterState.Patrol);
+        //         // 向右移动
+        //         transform.position = Vector2.MoveTowards(transform.position, _rightTargetPosition, speed * Time.deltaTime);
+        //
+        //         // 如果到达或超过右侧目标点，则切换到向左移动
+        //         if (transform.position.x >= _rightTargetPosition.x)
+        //         {
+        //             transform.localScale = new Vector2(1f, transform.localScale.y);
+        //             moveState = MoveState.MoveLeft;
+        //         }
+        //     }
+        //     // 如果是Idle状态，则不做任何移动
+        // }
     }
 
     public enum MoveState
