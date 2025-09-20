@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class AttackAction : MonoBehaviour
 {
-    //Íæ¼ÒµÄÊôĞÔ²Ù×÷½Ó¿Ú
+    //ç©å®¶çš„å±æ€§æ“ä½œæ¥å£
     IAttribute _playerAttribute;
-    //¹ÖÎï½»»¥½Ó¿Ú
+    //æ€ªç‰©äº¤äº’æ¥å£
     public IReaction _monsterReaction;
 
     private void Awake()

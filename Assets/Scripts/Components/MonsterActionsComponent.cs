@@ -11,6 +11,7 @@ namespace Components
     {
         private IMonsterAttribute _monsterAttribute;
         private Animator _animator;
+        public Collider2D wall;
 
 
         private void Start()
@@ -88,13 +89,15 @@ namespace Components
                     //触发平静状态
                     _monsterAttribute.SetAttributesValue(EMonsterAttributeType.IsRampage, 0);
                     //执行动画
-                    _animator.SetTrigger("isCalmness");
+                    _animator.SetTrigger("right");
                     //触发玩家的属性增加
                     EventManager.Instance.TriggerEvent(new UpdatePlayerAttribute()
                     {
                         attributeType = _monsterAttribute.GetUpgradeAttribute(),
                         varValue = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.UpgradeValue)
                     });
+                    GetComponent<CapsuleCollider2D>().enabled = false;
+                    wall.enabled = false;
                 }
             }
         }
@@ -118,7 +121,6 @@ namespace Components
         {
             UpdateFixedValue();
         }
-
 
         /// <summary>
         /// 更新一次变换数值

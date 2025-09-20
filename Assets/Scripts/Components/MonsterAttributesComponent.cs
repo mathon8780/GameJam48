@@ -32,7 +32,6 @@ namespace Components
             _animator = GetComponent<Animator>();
         }
 
-
         private void Update()
         {
             value.text = (GetAttributesValue(EMonsterAttributeType.StartAnger) + GetAttributesValue(EMonsterAttributeType.FixedAnger)).ToString("F0");

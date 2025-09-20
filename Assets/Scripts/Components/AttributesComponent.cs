@@ -2,6 +2,7 @@
 using DataConfig;
 using Interfaces;
 using Managers;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 namespace Components
@@ -15,6 +16,9 @@ namespace Components
 
         //运行时的副本信息
         private PlayerAttributes _runTimeAttributes;
+
+
+        private HpChanged info = new HpChanged(1, 1);
 
 
         private void Awake()
@@ -31,11 +35,21 @@ namespace Components
         private void OnEnable()
         {
             EventManager.Instance.RegisterEventListener<UpdatePlayerAttribute>(UpdatePlayerAttribute);
+            EventManager.Instance.RegisterEventListener<WrongInteractive>(TakeDamage);
         }
 
         private void OnDisable()
         {
             EventManager.Instance?.UnregisterEventListener<UpdatePlayerAttribute>(UpdatePlayerAttribute);
+            EventManager.Instance?.RegisterEventListener<WrongInteractive>(TakeDamage);
+        }
+
+
+        private void Update()
+        {
+            info.CurrentHP = GetAttributesValue(EAttributeType.HP);
+            info.MaxHP = GetAttributesValue(EAttributeType.MaxHP);
+            EventManager.Instance?.TriggerEvent(info);
         }
 
 
@@ -153,7 +167,7 @@ namespace Components
         }
 
 
-        public void UpdatePlayerAttribute(UpdatePlayerAttribute date)
+        private void UpdatePlayerAttribute(UpdatePlayerAttribute date)
         {
             //最大血量 当前血量 移动速度 冷静力 
             switch (date.attributeType)
@@ -178,6 +192,21 @@ namespace Components
             }
 
             Debug.Log("增加属性" + date.attributeType + " " + date.varValue);
+        }
+
+        private void TakeDamage(WrongInteractive data)
+        {
+            float def = GetAttributesValue(EAttributeType.Defense);
+            float finalDamage = Mathf.Max(0, data.damage - def);
+            SetAttributesValue(EAttributeType.HP, -finalDamage);
+            if (GetAttributesValue(EAttributeType.HP) <= 0)
+            {
+                //todo:死亡逻辑
+            }
+        }
+
+        private void Die()
+        {
         }
     }
 }
