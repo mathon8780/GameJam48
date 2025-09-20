@@ -9,7 +9,7 @@ namespace Components
     {
         Animator animator;
         IAttribute _IAttribute;
-        IDetectionInteraction _boxAreaDetection;
+        public IDetectionInteraction _boxAreaDetection;
 
 
         private void Awake()

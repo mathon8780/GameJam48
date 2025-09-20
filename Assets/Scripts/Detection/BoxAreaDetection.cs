@@ -19,7 +19,7 @@ namespace Detection
         IMonsterAttribute _monsterAttribute;
 
         //怪物交互接口
-        IReaction _monsterReaction;
+        public IReaction _monsterReaction;
 
 
         private void Start()
@@ -27,6 +27,7 @@ namespace Detection
             _playerAttribute = GetComponentInParent<IAttribute>();
             if (_playerAttribute == null)
                 Debug.LogError("BoxAreaDetection: IAttribute component not found on the GameObject.");
+            
         }
 
         private void OnTriggerEnter2D(Collider2D other)

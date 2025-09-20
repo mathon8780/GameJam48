@@ -45,6 +45,7 @@ namespace Components
 
         void Update()
         {
+            //Debug.Log(rb.velocity);
             rb.velocity = new Vector2(moveInput.x * _iAttributes.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
             if (!_iAttributes.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
