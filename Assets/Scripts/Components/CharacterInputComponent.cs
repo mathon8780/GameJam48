@@ -39,12 +39,16 @@ namespace Components
 
         private void Update()
         {
-            Move();
-            Interact();
+            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.isAlive))
+            {
+                Move();
+                Interact();
+            }
         }
 
         void Move()
         {
+            if (!_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.canMove)) return;
             //左右移动
             if (Input.GetKey(KeyCode.A))
             {
@@ -71,7 +75,7 @@ namespace Components
         void Interact()
         {
             //如果可以交互
-            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea))
+            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea) && _iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {

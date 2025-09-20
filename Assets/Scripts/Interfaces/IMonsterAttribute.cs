@@ -32,19 +32,19 @@ namespace Interfaces
 
         // void TakeInteractive(EInteractiveType interactiveType);
 
-        // /// <summary>
-        // /// 获取怪物运行时状态
-        // /// </summary>
-        // /// <param name="runTimeAttributeType">状态属性</param>
-        // /// <returns></returns>
-        // bool GetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType);
-        //
-        // /// <summary>
-        // /// 设置怪物运行时状态
-        // /// </summary>
-        // /// <param name="runTimeAttributeType"></param>
-        // /// <param name="value"></param>
-        // void SetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType, bool value);
+        /// <summary>
+        /// 获取怪物运行时状态
+        /// </summary>
+        /// <param name="runTimeAttributeType">状态属性</param>
+        /// <returns></returns>
+        bool GetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType);
+
+        /// <summary>
+        /// 设置怪物运行时状态
+        /// </summary>
+        /// <param name="runTimeAttributeType"></param>
+        /// <param name="value"></param>
+        void SetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType, bool value);
     }
 
     /// <summary>
@@ -74,5 +74,8 @@ namespace Interfaces
     public enum EMonsterRunTimeAttributeType
     {
         InAnglerState, //是否处于愤怒状态
+        IsMoving,
+        CanMove,
+        IsAlive
     }
 }

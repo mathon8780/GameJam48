@@ -17,5 +17,8 @@ namespace DataConfig
 
         [Header("运行时状态")] [Tooltip("是否可交互")] public bool CanInteractive = false;
         [Header("运行时状态")] [Tooltip("是否站在地面上")] public bool IsGround = true;
+        [Header("运行时状态")] [Tooltip("是否正在运动")] public bool IsMoving = false;
+        [Header("运行时状态")] [Tooltip("能否移动")] public bool canMove = true;
+        [Header("运行时状态")] [Tooltip("是否存活")] public bool isAlive = true;
     }
 }

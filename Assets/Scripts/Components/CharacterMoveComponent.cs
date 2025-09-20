@@ -31,9 +31,9 @@ namespace Components
 
         public void OnMove(Vector2 move)
         {
-
-            //TODO：判断是否存活，判断是否正在交互
             moveInput = move;
+            transform.localScale = new Vector3(moveInput.x == 0 ? transform.localScale.x : moveInput.x, transform.localScale.y, transform.localScale.z);
+            _iAttributes.SetRunTimeAttributeValue(ERunTimeAttributeType.IsMoving, moveInput != Vector2.zero);
         }
 
         public void OnJump()

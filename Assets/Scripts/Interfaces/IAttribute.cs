@@ -61,6 +61,8 @@ namespace Interfaces
     {
         InInteractiveArea,
         IsGround,
-
+        IsMoving,
+        canMove,
+        isAlive
     }
 }

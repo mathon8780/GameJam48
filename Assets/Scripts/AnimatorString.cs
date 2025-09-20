@@ -8,6 +8,7 @@ class AnimatorString
     public static readonly string isGround = "isGround";
     public static readonly string isInteractive = "isInteractive";
     public static readonly string isAlive = "isAlive";
+    public static readonly string canMove = "canMove";
 
     // Trigger
     public static readonly string Jump = "jump";

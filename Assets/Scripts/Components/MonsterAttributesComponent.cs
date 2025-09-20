@@ -148,14 +148,24 @@ namespace Components
         }
 
 
-        // public bool GetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType)
-        // {
-        //     return null;
-        // }
-        //
-        // public void SetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType, bool value)
-        // {
-        //     return null;
-        // }
+        public bool GetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType)
+        {
+            switch(runTimeAttributeType)
+            {
+                case EMonsterRunTimeAttributeType.InAnglerState:
+                    return _runTimeAttributes.InAnglerState;
+                case EMonsterRunTimeAttributeType.CanMove:
+                    return _runTimeAttributes.CanMove;
+                case EMonsterRunTimeAttributeType.IsMoving:
+                    return _runTimeAttributes.IsMoving;
+                default:
+                    return false;
+            }
+        }
+
+        public void SetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType, bool value)
+        {
+            return;
+        }
     }
 }

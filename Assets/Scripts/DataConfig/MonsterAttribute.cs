@@ -30,5 +30,10 @@ namespace DataConfig
         [Tooltip("冷静阈值 默认40")] public float CalmnessThreshold = 40;
 
         [Tooltip("怪物状态")] public EMonsterState MonsterState = EMonsterState.Idle;
+
+        [Tooltip("是否存活")] public bool IsAlive = true;
+        [Tooltip("是否可移动")] public bool CanMove = true;
+        [Tooltip("是否正在移动")] public bool IsMoving = false;
+        [Tooltip("是否在愤怒状态")] public bool InAnglerState = false;
     }
 }
