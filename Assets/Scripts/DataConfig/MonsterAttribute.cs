@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Interfaces;
+using UnityEngine;
 
 namespace DataConfig
 {
@@ -23,5 +24,7 @@ namespace DataConfig
         [Tooltip("攻击力")] public float Atk;
         [Tooltip("红温增幅")] public float AngerIncreaseRate;
         [Tooltip("冷静阈值 默认40")] public float CalmnessThreshold = 40;
+
+        [Tooltip("怪物状态")] public EMonsterState MonsterState = EMonsterState.Idle;
     }
 }

@@ -1,23 +1,24 @@
+using DataConfig;
 using Interfaces;
 using UnityEngine;
 
 namespace Components
 {
-    public class MonsterActionsComponent : MonoBehaviour, IActions
+    public class MonsterActionsComponent : MonoBehaviour, IReaction
     {
-        public void Greeting()
+        /// <summary>
+        /// 产生交互接口
+        /// </summary>
+        /// <param name="interactiveType"></param>
+        public void Interactive(EInteractiveType interactiveType)
         {
         }
 
-        public void Chat()
-        {
-        }
-
-        public void Roar()
-        {
-        }
-
-        public void Attack()
+        /// <summary>
+        /// 受击接口
+        /// </summary>
+        /// <param name="attacker"></param>
+        public void Attacked(IAttribute attacker)
         {
         }
     }

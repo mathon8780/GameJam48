@@ -7,34 +7,114 @@ namespace Components
 {
     public class AttributesComponent : MonoBehaviour, IAttribute
     {
+        //关联的原始信息
         [SerializeField] private PlayerAttributes attributes;
 
+        //运行时的副本信息
+        private PlayerAttributes _runTimeAttributes;
+
+
+        private void Awake()
+        {
+            //创建运行时副本
+            if (!attributes)
+                Debug.LogError("AttributesComponent: attributes is null");
+
+            _runTimeAttributes = Instantiate(attributes);
+        }
+
+        /// <summary>
+        /// 用于获取属性值
+        /// </summary>
+        /// <param name="attributeType"></param>
+        /// <returns></returns>
         public float GetAttributesValue(EAttributeType attributeType)
         {
             switch (attributeType)
             {
                 case EAttributeType.HP:
-                    return attributes.Hp + attributes.FixedHp;
+                    return _runTimeAttributes.Hp + _runTimeAttributes.FixedHp;
                 case EAttributeType.MaxHP:
-                    return attributes.MaxHp;
+                    return _runTimeAttributes.MaxHp;
                 case EAttributeType.FixedHP:
-                    return attributes.FixedHp;
+                    return _runTimeAttributes.FixedHp;
                 case EAttributeType.MoveSpeed:
-                    return attributes.MoveSpeed;
+                    return _runTimeAttributes.MoveSpeed;
                 case EAttributeType.JumpHeight:
-                    return attributes.JumpHeight;
+                    return _runTimeAttributes.JumpHeight;
                 case EAttributeType.Calmness:
-                    return attributes.Calmness;
+                    return _runTimeAttributes.Calmness;
                 case EAttributeType.Defense:
-                    return attributes.Defense;
+                    return _runTimeAttributes.Defense;
             }
 
             return 0;
         }
 
+        /// <summary>
+        /// 用于修改fixed属性值与最大值
+        /// </summary>
+        /// <param name="attributeType">属性</param>
+        /// <param name="varValue">修改值</param>
+        public void SetAttributesValue(EAttributeType attributeType, float varValue)
+        {
+            switch (attributeType)
+            {
+                case EAttributeType.MaxHP:
+                    _runTimeAttributes.MaxHp += (int)varValue;
+                    break;
+                case EAttributeType.FixedHP:
+                    _runTimeAttributes.FixedHp += (int)varValue;
+                    break;
+                case EAttributeType.MoveSpeed:
+                    _runTimeAttributes.MoveSpeed += varValue;
+                    break;
+                case EAttributeType.Calmness:
+                    _runTimeAttributes.Calmness += varValue;
+                    break;
+                case EAttributeType.Defense:
+                    _runTimeAttributes.Defense += varValue;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 获取玩家状态
+        /// </summary>
+        /// <returns></returns>
         public EPlayerState GetPlayerState()
         {
-            return attributes.playerState;
+            return _runTimeAttributes.playerState;
+        }
+
+        /// <summary>
+        /// 设置玩家状态
+        /// </summary>
+        /// <param name="state">目标状态</param>
+        public void SetPlayerState(EPlayerState state)
+        {
+            _runTimeAttributes.playerState = state;
+        }
+
+        public bool GetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType)
+        {
+            switch (runTimeAttributeType)
+            {
+                case ERunTimeAttributeType.InInteractiveArea:
+                    return _runTimeAttributes.CanInteractive;
+            }
+
+            return false;
+        }
+
+        public void SetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType, bool value)
+        {
+            switch (runTimeAttributeType)
+            {
+                case ERunTimeAttributeType.InInteractiveArea:
+                    _runTimeAttributes.CanInteractive = value;
+                    break;
+            }
         }
     }
 }

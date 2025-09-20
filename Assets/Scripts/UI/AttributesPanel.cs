@@ -19,8 +19,8 @@ namespace UI
 
         private void OnDisable()
         {
-            EventManager.Instance.UnregisterEventListener<HpChanged>(UpdateHpChanged);
-            EventManager.Instance.UnregisterEventListener<CalmnessChanged>(UpdateCalmness);
+            EventManager.Instance?.UnregisterEventListener<HpChanged>(UpdateHpChanged);
+            EventManager.Instance?.UnregisterEventListener<CalmnessChanged>(UpdateCalmness);
         }
 
         private void UpdateHpChanged(HpChanged e)

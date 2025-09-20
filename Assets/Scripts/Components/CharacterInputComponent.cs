@@ -1,5 +1,4 @@
 ﻿using System;
-using Assets.Scripts.DataConfig;
 using Interfaces;
 using Managers;
 using UnityEngine;
@@ -36,7 +35,6 @@ namespace Components
 
         private void Update()
         {
-
             Move();
             Interact();
         }
@@ -49,6 +47,7 @@ namespace Components
                 EventManager.Instance?.TriggerEvent<MoveEvent>(new MoveEvent(Vector2.left));
                 //OnMove?.Invoke(Vector2.left);
             }
+
             if (Input.GetKey(KeyCode.D))
             {
                 EventManager.Instance?.TriggerEvent<MoveEvent>(new MoveEvent(Vector2.right));

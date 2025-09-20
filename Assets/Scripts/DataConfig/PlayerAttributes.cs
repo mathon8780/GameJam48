@@ -14,5 +14,7 @@ namespace DataConfig
         [Tooltip("防御力")] public float Defense;
 
         [Tooltip("玩家状态")] public EPlayerState playerState = EPlayerState.Idle;
+
+        [Header("运行时状态")] [Tooltip("是否可交互")] public bool CanInteractive = false;
     }
 }

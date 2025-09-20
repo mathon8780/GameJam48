@@ -70,7 +70,6 @@ namespace Tools
             {
                 _instance = this as T; // 设置当前实例为单例
                 DontDestroyOnLoad(gameObject); // 确保实例在场景切换时不会被销毁
-                Debug.Log($"[Singleton] {typeof(T).Name} initialized via Awake.");
             }
             else if (_instance != this)
             {
