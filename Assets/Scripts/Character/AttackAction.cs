@@ -20,11 +20,8 @@ public class AttackAction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            CharacterMoveComponent moveComponent = GetComponentInParent<CharacterMoveComponent>();
             _monsterReaction = collision.gameObject.GetComponent<IReaction>();
-            moveComponent.OnMove(Vector2.zero);
             _monsterReaction?.Attacked(_playerAttribute);
-
         }
     }
 

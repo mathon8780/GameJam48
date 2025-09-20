@@ -22,6 +22,6 @@ class AnimatorString
     public static readonly string IsCalmness = "isCalmness";
     public static readonly string IsAnger = "isAnger";
     public static readonly string WrongInteractive = "wrongInteractive";//错误的交互
-    public static readonly string ConcreteInteractive = "concreteInteractive";//正确的交互
+    public static readonly string right = "right";//正确的交互
 
 }
