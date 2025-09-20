@@ -106,6 +106,7 @@ namespace Components
             _monsterAttribute.SetAttributesValue(EMonsterAttributeType.IsRampage, 0);
             //执行动画
             _animator.SetTrigger("right");
+            GetComponent<CapsuleCollider2D>().enabled = false;
         }
 
         /// <summary>
