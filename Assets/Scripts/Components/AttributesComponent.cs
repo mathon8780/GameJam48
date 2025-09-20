@@ -8,6 +8,7 @@ namespace Components
 {
     public class AttributesComponent : MonoBehaviour, IAttribute
     {
+        Animator animator;
         //关联的原始信息
         [SerializeField] private PlayerAttributes attributes;
 
@@ -22,6 +23,8 @@ namespace Components
                 Debug.LogError("AttributesComponent: attributes is null");
 
             _runTimeAttributes = Instantiate(attributes);
+
+            animator = GetComponent<Animator>();
         }
 
         private void OnEnable()
@@ -114,6 +117,14 @@ namespace Components
             {
                 case ERunTimeAttributeType.InInteractiveArea:
                     return _runTimeAttributes.CanInteractive;
+                case ERunTimeAttributeType.IsGround:
+                    return _runTimeAttributes.IsGround;
+                case ERunTimeAttributeType.CanMove:
+                    return animator.GetBool(AnimatorString.canMove);
+                case ERunTimeAttributeType.IsMoving:
+                    return _runTimeAttributes.IsMoving;
+                case ERunTimeAttributeType.IsAlive:
+                    return _runTimeAttributes.isAlive;
             }
 
             return false;
@@ -125,6 +136,19 @@ namespace Components
             {
                 case ERunTimeAttributeType.InInteractiveArea:
                     _runTimeAttributes.CanInteractive = value;
+                    break;
+                case ERunTimeAttributeType.IsGround:
+                    _runTimeAttributes.IsGround = value;
+                    break;
+                case ERunTimeAttributeType.CanMove:
+                    _runTimeAttributes.canMove = value;
+                    break;
+                case ERunTimeAttributeType.IsMoving:
+                    _runTimeAttributes.IsMoving = value;
+                    animator.SetBool(AnimatorString.isMoving, value);
+                    break;
+                case ERunTimeAttributeType.IsAlive:
+                    _runTimeAttributes.isAlive = value;
                     break;
             }
         }

@@ -63,4 +63,11 @@ namespace Interfaces
         UpgradeAttribute, //升级增加属性
         UpgradeValue //升级增加数值
     }
+
+    public enum EMonsterRunTimeAttributeType
+    {
+        IsMoving,
+        CanMove,
+        IsAlive
+    }
 }

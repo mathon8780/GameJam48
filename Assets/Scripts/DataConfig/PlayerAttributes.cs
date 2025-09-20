@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Numerics;
+using UnityEngine;
 
 namespace DataConfig
 {
     [CreateAssetMenu(fileName = "New PlayerAttribute", menuName = "Player Attribute", order = 0)]
     public class PlayerAttributes : ScriptableObject
     {
+        
         [Tooltip("基础血量")] public float Hp;
         [Tooltip("最大血量")] public float MaxHp;
         // [Tooltip("修正血量")] public float FixedHp;
@@ -16,5 +18,9 @@ namespace DataConfig
         [Tooltip("玩家状态")] public EPlayerState playerState = EPlayerState.Idle;
 
         [Header("运行时状态")] [Tooltip("是否可交互")] public bool CanInteractive = false;
+        [Header("运行时状态")] [Tooltip("是否站在地面上")] public bool IsGround = true;
+        [Header("运行时状态")] [Tooltip("是否正在运动")] public bool IsMoving = false;
+        [Header("运行时状态")] [Tooltip("能否移动")] public bool canMove = true;
+        [Header("运行时状态")] [Tooltip("是否存活")] public bool isAlive = true;
     }
 }

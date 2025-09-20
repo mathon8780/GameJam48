@@ -21,14 +21,12 @@ namespace Components
         IActions _iActions;
         IAttribute _iAttribute;
 
-        StateControlComponent stateController;
         CharacterMoveComponent characterMoveComponent;
 
         private void Awake()
         {
             _iActions = GetComponent<CharacterActionsComponent>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
-            stateController = GetComponent<StateControlComponent>();
             _iAttribute = GetComponent<IAttribute>(); //获取属性接口
 
             OnGreeting += _iActions.Greeting;
@@ -41,12 +39,16 @@ namespace Components
 
         private void Update()
         {
-            Move();
-            Interact();
+            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.IsAlive))
+            {
+                Move();
+                Interact();
+            }
         }
 
         void Move()
         {
+            if (!_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.CanMove)) return;
             //左右移动
             if (Input.GetKey(KeyCode.A))
             {
@@ -73,7 +75,7 @@ namespace Components
         void Interact()
         {
             //如果可以交互
-            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea))
+            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea) && _iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
