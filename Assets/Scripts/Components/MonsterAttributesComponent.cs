@@ -166,7 +166,7 @@ namespace Components
         /// 设置怪物状态
         /// </summary>
         /// <param name="state"></param>
-        public void SetMonsterState(EMonsterAttributeType state)
+        public void SetMonsterState(EMonsterState state)
         {
         }
 

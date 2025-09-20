@@ -28,7 +28,7 @@ namespace Interfaces
         /// 设置怪物状态
         /// </summary>
         /// <param name="state"></param>
-        void SetMonsterState(EMonsterAttributeType state);
+        void SetMonsterState(EMonsterState state);
 
         /// <summary>
         /// 获得升级增加属性
