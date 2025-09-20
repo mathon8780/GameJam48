@@ -105,7 +105,7 @@ namespace Components
             //触发平静状态
             _monsterAttribute.SetAttributesValue(EMonsterAttributeType.IsRampage, 0);
             //执行动画
-            _animator.SetTrigger("isCalmness");
+            _animator.SetTrigger("right");
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Components
                 _monsterAttribute.GetAttributesValue(EMonsterAttributeType.FixedAnger) >= 100)
             {
                 _monsterAttribute.SetAttributesValue(EMonsterAttributeType.IsRampage, 1);
-                _animator.SetTrigger("isAngry");
+                // _animator.SetTrigger("isAngry");
             }
         }
     }

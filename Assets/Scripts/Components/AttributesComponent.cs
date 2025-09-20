@@ -9,6 +9,7 @@ namespace Components
     public class AttributesComponent : MonoBehaviour, IAttribute
     {
         Animator animator;
+
         //关联的原始信息
         [SerializeField] private PlayerAttributes attributes;
 
@@ -78,9 +79,9 @@ namespace Components
                 case EAttributeType.MaxHP:
                     _runTimeAttributes.MaxHp += (int)varValue;
                     break;
-                    // case EAttributeType.FixedHP:
-                    // _runTimeAttributes.FixedHp += (int)varValue;
-                    break;
+                // case EAttributeType.FixedHP:
+                // _runTimeAttributes.FixedHp += (int)varValue;
+                // break;
                 case EAttributeType.MoveSpeed:
                     _runTimeAttributes.MoveSpeed += varValue;
                     break;
@@ -119,8 +120,6 @@ namespace Components
                     return _runTimeAttributes.CanInteractive;
                 case ERunTimeAttributeType.IsGround:
                     return _runTimeAttributes.IsGround;
-                case ERunTimeAttributeType.CanMove:
-                    return animator.GetBool(AnimatorString.canMove);
                 case ERunTimeAttributeType.IsMoving:
                     return _runTimeAttributes.IsMoving;
                 case ERunTimeAttributeType.IsAlive:

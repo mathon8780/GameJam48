@@ -47,6 +47,7 @@ namespace Interfaces
     {
         HP,
         MaxHP,
+
         // FixedHP,
         MoveSpeed,
         JumpHeight,
@@ -59,10 +60,10 @@ namespace Interfaces
     /// </summary>
     public enum ERunTimeAttributeType
     {
-        InInteractiveArea,
-        IsGround,
-        IsMoving,
-        CanMove,
-        IsAlive
+        InInteractiveArea, // 是否在互动区域内
+        IsGround, // 是否在地面上
+        IsMoving, // 是否在移动
+        CanMove, // 是否可以移动
+        IsAlive // 是否存活
     }
 }

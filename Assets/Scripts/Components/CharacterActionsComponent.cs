@@ -16,7 +16,7 @@ namespace Components
         {
             animator = GetComponent<Animator>();
             _IAttribute = GetComponent<AttributesComponent>();
-            _boxAreaDetection = GetComponent<IDetectionInteraction>();
+            _boxAreaDetection = GetComponentInChildren<IDetectionInteraction>();
         }
 
         /// <summary>
