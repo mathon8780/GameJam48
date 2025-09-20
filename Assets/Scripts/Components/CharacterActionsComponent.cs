@@ -9,14 +9,14 @@ namespace Components
     {
         Animator animator;
         IAttribute _IAttribute;
-        IDetectionInteraction _boxAreaDetection;
+        public IDetectionInteraction _boxAreaDetection;
 
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             _IAttribute = GetComponent<AttributesComponent>();
-            _boxAreaDetection = GetComponent<IDetectionInteraction>();
+            _boxAreaDetection = GetComponentInChildren<IDetectionInteraction>();
         }
 
         /// <summary>

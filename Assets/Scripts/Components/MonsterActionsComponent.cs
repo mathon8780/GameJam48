@@ -29,6 +29,7 @@ namespace Components
         /// <param name="interactiveType">使用的交互对象</param>
         public void Interactive(EInteractiveType interactiveType)
         {
+            Debug.Log("Interactive OK");
             EInteractiveType targetType = EInteractiveType.None;
             float startAnger = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.StartAnger);
             float fixedAnger = _monsterAttribute.GetAttributesValue(EMonsterAttributeType.FixedAnger);

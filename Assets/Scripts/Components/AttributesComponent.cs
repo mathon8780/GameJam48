@@ -80,7 +80,6 @@ namespace Components
                     break;
                     // case EAttributeType.FixedHP:
                     // _runTimeAttributes.FixedHp += (int)varValue;
-                    break;
                 case EAttributeType.MoveSpeed:
                     _runTimeAttributes.MoveSpeed += varValue;
                     break;
