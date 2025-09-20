@@ -1,3 +1,4 @@
+using Components;
 using Interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,18 +13,19 @@ public class AttackAction : MonoBehaviour
 
     private void Awake()
     {
-        _playerAttribute = GetComponent<IAttribute>();
+        _playerAttribute = GetComponentInParent<IAttribute>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Monster"))
         {
-            Debug.Log("collision");
+            CharacterMoveComponent moveComponent = GetComponentInParent<CharacterMoveComponent>();
             _monsterReaction = collision.gameObject.GetComponent<IReaction>();
+            moveComponent.OnMove(Vector2.zero);
             _monsterReaction?.Attacked(_playerAttribute);
+
         }
     }
-
 
 }

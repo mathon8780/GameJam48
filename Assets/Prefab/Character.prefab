@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6679070915076347124}
   - component: {fileID: 2929803780476681551}
+  - component: {fileID: 5438906453162693336}
   m_Layer: 0
   m_HasEditorInfo: 1
   m_Name: Attack
@@ -153,12 +154,24 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.37593424
+--- !u!114 &5438906453162693336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033043961614781876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d53b9358e8c9a419a9519f2323b745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6089032709807256182
 GameObject:
   m_ObjectHideFlags: 0

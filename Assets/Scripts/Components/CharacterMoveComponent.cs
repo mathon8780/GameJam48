@@ -26,7 +26,6 @@ namespace Components
             rb = GetComponent<Rigidbody2D>();
             _iAttributes = GetComponent<AttributesComponent>();
             capsuleCollider2D = GetComponent<CapsuleCollider2D>();
-
         }
 
         public void OnMove(Vector2 move)
@@ -46,6 +45,7 @@ namespace Components
 
         void Update()
         {
+            Debug.Log(rb.velocity);
             rb.velocity = new Vector2(moveInput.x * _iAttributes.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
             if(!_iAttributes.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
