@@ -11,14 +11,9 @@ namespace Components
     /// </summary>
     public class CharacterMoveComponent : MonoBehaviour
     {
-        public float moveSpeed = 5f; // 移动速度
-        public float jumpForce = 5f; // 跳跃速度
-        public float falling = 8f; // 下落速度
-
         Rigidbody2D rb;
         CapsuleCollider2D capsuleCollider2D;
-        StateControlComponent stateController;
-        IAttribute _IAttributes;
+        IAttribute _iAttributes;
 
         Vector2 moveInput = Vector2.zero;
 
@@ -29,39 +24,38 @@ namespace Components
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            stateController = GetComponent<StateControlComponent>();
-            _IAttributes = GetComponent<AttributesComponent>();
+            _iAttributes = GetComponent<AttributesComponent>();
             capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
         }
 
         public void OnMove(Vector2 move)
         {
+
             //TODO：判断是否存活，判断是否正在交互
             moveInput = move;
         }
 
         public void OnJump()
         {
-            if (stateController.IsGround)
+            if (_iAttributes.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
-                stateController.Jump();
-                rb.velocity = new Vector2(rb.velocity.x, _IAttributes.GetAttributesValue(EAttributeType.JumpHeight));
+                rb.velocity = new Vector2(rb.velocity.x, _iAttributes.GetAttributesValue(EAttributeType.JumpHeight));
             }
         }
 
         void Update()
         {
-            rb.velocity = new Vector2(moveInput.x * _IAttributes.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
-            if(!stateController.IsGround)
+            rb.velocity = new Vector2(moveInput.x * _iAttributes.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
+            if(!_iAttributes.GetRunTimeAttributeValue(ERunTimeAttributeType.IsGround))
             {
-                rb.velocity -= new Vector2(0, falling * Time.deltaTime * 1.1f);
+                rb.velocity += new Vector2(0, -9.8f * Time.deltaTime * 1.1f);
             }
         }
 
         private void FixedUpdate()
         {
-            stateController.IsGround = capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.05f) > 0;
+            _iAttributes.SetRunTimeAttributeValue(ERunTimeAttributeType.IsGround, capsuleCollider2D.Cast(Vector2.down, contactFilter, groundResults, 0.05f) > 0);
         }
     }
 }

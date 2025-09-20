@@ -60,6 +60,7 @@ namespace Interfaces
     public enum ERunTimeAttributeType
     {
         InInteractiveArea,
-        IsFacingLeft
+        IsGround,
+
     }
 }

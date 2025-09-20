@@ -19,7 +19,7 @@ namespace Detection
 
         private void Start()
         {
-            _playerAttribute = GetComponent<IAttribute>();
+            _playerAttribute = GetComponentInParent<IAttribute>();
             if (_playerAttribute == null)
                 Debug.LogError("BoxAreaDetection: IAttribute component not found on the GameObject.");
         }

@@ -16,5 +16,6 @@ namespace DataConfig
         [Tooltip("玩家状态")] public EPlayerState playerState = EPlayerState.Idle;
 
         [Header("运行时状态")] [Tooltip("是否可交互")] public bool CanInteractive = false;
+        [Header("运行时状态")] [Tooltip("是否站在地面上")] public bool IsGround = true;
     }
 }

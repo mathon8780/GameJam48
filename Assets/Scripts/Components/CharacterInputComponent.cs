@@ -21,14 +21,12 @@ namespace Components
         IActions _iActions;
         IAttribute _iAttribute;
 
-        StateControlComponent stateController;
         CharacterMoveComponent characterMoveComponent;
 
         private void Awake()
         {
             _iActions = GetComponent<CharacterActionsComponent>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
-            stateController = GetComponent<StateControlComponent>();
             _iAttribute = GetComponent<IAttribute>(); //获取属性接口
 
             OnGreeting += _iActions.Greeting;

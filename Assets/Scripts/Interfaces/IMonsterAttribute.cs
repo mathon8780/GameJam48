@@ -67,4 +67,9 @@ namespace Interfaces
         AngerIncreaseRate, //愤怒增长速率
         CalmnessThreshold, //冷静阈值
     }
+
+    public enum EMonsterRunTimeAttributeType
+    {
+        InAnglerState, //是否处于愤怒状态
+    }
 }
