@@ -18,7 +18,6 @@ namespace Detection
         //怪物属性接口
         IMonsterAttribute _monsterAttribute;
 
-        [SerializeField]
         //怪物交互接口
         public IReaction _monsterReaction;
 
@@ -36,15 +35,16 @@ namespace Detection
             //检测到怪物  玩家可互动
             if (other.CompareTag("Monster"))
             {
+                _monsterReaction = other.GetComponent<IReaction>();
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, true);
             }
         }
 
 
-        private void OnCollisionExit2D(Collision2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
             //离开怪物  玩家不可互动
-            if (other.collider.CompareTag("Monster"))
+            if (other.CompareTag("Monster"))
             {
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, false);
             }

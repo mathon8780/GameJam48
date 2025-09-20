@@ -32,6 +32,7 @@ namespace Components
             OnGreeting += _iActions.Greeting;
             OnChat += _iActions.Chat;
             OnRoar += _iActions.Roar;
+            OnAttack += _iActions.Attack;
 
             OnMove += characterMoveComponent.OnMove;
             OnJump += characterMoveComponent.OnJump;
@@ -43,6 +44,7 @@ namespace Components
             {
                 Move();
                 Interact();
+                Attack();
             }
         }
 
@@ -91,6 +93,14 @@ namespace Components
                 {
                     OnRoar?.Invoke();
                 }
+            }
+        }
+
+        void Attack()
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                OnAttack?.Invoke();
             }
         }
     }
