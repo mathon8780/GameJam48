@@ -3,6 +3,7 @@ using DataConfig;
 using Interfaces;
 using UnityEngine;
 
+
 namespace Components
 {
     public class MonsterAttributesComponent : MonoBehaviour, IMonsterAttribute
@@ -136,6 +137,7 @@ namespace Components
         public void SetMonsterState(EMonsterAttributeType state)
         {
         }
+
 
         // public bool GetRunTimeAttributeValue(ERunTimeAttributeType runTimeAttributeType)
         // {

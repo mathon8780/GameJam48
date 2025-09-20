@@ -13,6 +13,9 @@ namespace Detection
         //玩家的属性操作接口
         IAttribute _playerAttribute;
 
+        //怪物属性接口
+        IMonsterAttribute _monsterAttribute;
+
 
         private void Start()
         {
@@ -21,9 +24,9 @@ namespace Detection
                 Debug.LogError("BoxAreaDetection: IAttribute component not found on the GameObject.");
         }
 
-
         private void OnTriggerEnter2D(Collider2D other)
         {
+            //检测到怪物  玩家可互动
             if (other.CompareTag("Monster"))
             {
                 // _playerAttribute = other.GetComponent<IAttribute>();
@@ -31,8 +34,10 @@ namespace Detection
             }
         }
 
+
         private void OnCollisionExit2D(Collision2D other)
         {
+            //离开怪物  玩家不可互动
             if (other.collider.CompareTag("Monster"))
             {
                 // _playerAttribute = other.collider.GetComponent<IAttribute>();

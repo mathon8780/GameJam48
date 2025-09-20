@@ -12,9 +12,14 @@ namespace Components
         public UnityAction OnChat;
         public UnityAction OnRoar;
         public UnityAction<Vector2> OnMove;
+
         public UnityAction OnJump;
 
+        //todo:攻击逻辑 
+        public UnityAction OnAttack;
+
         IActions _iActions;
+        IAttribute _iAttribute;
 
         StateControlComponent stateController;
         CharacterMoveComponent characterMoveComponent;
@@ -24,6 +29,7 @@ namespace Components
             _iActions = GetComponent<CharacterActionsComponent>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
             stateController = GetComponent<StateControlComponent>();
+            _iAttribute = GetComponent<IAttribute>(); //获取属性接口
 
             OnGreeting += _iActions.Greeting;
             OnChat += _iActions.Chat;
@@ -66,19 +72,23 @@ namespace Components
 
         void Interact()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            //如果可以交互
+            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea))
             {
-                OnGreeting?.Invoke();
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    OnGreeting?.Invoke();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                OnChat?.Invoke();
-            }
+                if (Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    OnChat?.Invoke();
+                }
 
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                OnRoar?.Invoke();
+                if (Input.GetKeyDown(KeyCode.Alpha3))
+                {
+                    OnRoar?.Invoke();
+                }
             }
         }
     }

@@ -30,6 +30,8 @@ namespace Interfaces
         /// <param name="state"></param>
         void SetMonsterState(EMonsterAttributeType state);
 
+        // void TakeInteractive(EInteractiveType interactiveType);
+
         // /// <summary>
         // /// 获取怪物运行时状态
         // /// </summary>
