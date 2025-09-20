@@ -30,9 +30,14 @@ namespace DataConfig
         [Tooltip("冷静阈值 默认40")] public float CalmnessThreshold = 40;
 
         [Tooltip("怪物状态")] public EMonsterState MonsterState = EMonsterState.Idle;
+
         [Tooltip("暴走状态")] public bool IsRampage = false;
 
-        [Header("击败回复")] [Tooltip("升级增加属性")] public EUpgradeAttribute UpgradeAttribute;
+        [Header("击败回复")][Tooltip("升级增加属性")] public EUpgradeAttribute UpgradeAttribute;
         [Tooltip("升级增加数值")] public float UpgradeValue;
+
+        public bool IsMoving = false;
+        public bool CanMove = true;
+
     }
 }

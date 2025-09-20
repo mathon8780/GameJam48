@@ -39,7 +39,7 @@ namespace Components
 
         private void Update()
         {
-            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.isAlive))
+            if (_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.IsAlive))
             {
                 Move();
                 Interact();
@@ -48,7 +48,7 @@ namespace Components
 
         void Move()
         {
-            if (!_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.canMove)) return;
+            if (!_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.CanMove)) return;
             //左右移动
             if (Input.GetKey(KeyCode.A))
             {

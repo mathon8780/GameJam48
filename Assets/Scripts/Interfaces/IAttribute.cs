@@ -62,7 +62,7 @@ namespace Interfaces
         InInteractiveArea,
         IsGround,
         IsMoving,
-        canMove,
-        isAlive
+        CanMove,
+        IsAlive
     }
 }

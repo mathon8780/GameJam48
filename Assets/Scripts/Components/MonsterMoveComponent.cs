@@ -1,5 +1,6 @@
-using System;
+using DataConfig;
 using Interfaces;
+using System;
 using UnityEngine;
 
 namespace Components
@@ -35,7 +36,7 @@ namespace Components
             // 确保初始状态不是Idle，否则物体不会移动
             if (moveState == MoveState.Idle)
             {
-                moveState = MoveState.MoveRight; // 默认开始向右移动
+                moveState = MoveState.MoveLeft; // 默认开始向右移动
             }
         }
 
@@ -45,12 +46,14 @@ namespace Components
             // 根据当前状态进行移动
             if (moveState == MoveState.MoveLeft)
             {
+                //_monsterAttribute.SetMonsterState(EMonsterState.Patrol);
                 // 向左移动
                 transform.position = Vector2.MoveTowards(transform.position, _leftTargetPosition, speed * Time.deltaTime);
 
                 // 如果到达或超过左侧目标点，则切换到向右移动
                 if (transform.position.x <= _leftTargetPosition.x)
                 {
+                    transform.localScale = new Vector2(-1f, transform.localScale.y);
                     moveState = MoveState.MoveRight;
                 }
             }
@@ -62,6 +65,7 @@ namespace Components
                 // 如果到达或超过右侧目标点，则切换到向左移动
                 if (transform.position.x >= _rightTargetPosition.x)
                 {
+                    transform.localScale = new Vector2(1f, transform.localScale.y);
                     moveState = MoveState.MoveLeft;
                 }
             }

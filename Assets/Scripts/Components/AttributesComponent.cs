@@ -119,11 +119,11 @@ namespace Components
                     return _runTimeAttributes.CanInteractive;
                 case ERunTimeAttributeType.IsGround:
                     return _runTimeAttributes.IsGround;
-                case ERunTimeAttributeType.canMove:
+                case ERunTimeAttributeType.CanMove:
                     return animator.GetBool(AnimatorString.canMove);
                 case ERunTimeAttributeType.IsMoving:
                     return _runTimeAttributes.IsMoving;
-                case ERunTimeAttributeType.isAlive:
+                case ERunTimeAttributeType.IsAlive:
                     return _runTimeAttributes.isAlive;
             }
 
@@ -140,14 +140,14 @@ namespace Components
                 case ERunTimeAttributeType.IsGround:
                     _runTimeAttributes.IsGround = value;
                     break;
-                case ERunTimeAttributeType.canMove:
+                case ERunTimeAttributeType.CanMove:
                     _runTimeAttributes.canMove = value;
                     break;
                 case ERunTimeAttributeType.IsMoving:
                     _runTimeAttributes.IsMoving = value;
                     animator.SetBool(AnimatorString.isMoving, value);
                     break;
-                case ERunTimeAttributeType.isAlive:
+                case ERunTimeAttributeType.IsAlive:
                     _runTimeAttributes.isAlive = value;
                     break;
             }
