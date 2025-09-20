@@ -25,16 +25,6 @@ namespace Components
         public ContactFilter2D contactFilter;
         RaycastHit2D[] groundResults = new RaycastHit2D[5];
 
-        //private void OnEnable()
-        //{
-        //    EventManager.Instance.RegisterEventListener<JumpEvent>(OnJump);
-        //}
-
-        //private void OnDisable()
-        //{
-        //    EventManager.Instance?.UnregisterEventListener<JumpEvent>(OnJump);
-        //}
-
 
         private void Awake()
         {
