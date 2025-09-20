@@ -58,7 +58,7 @@ namespace Components
             }
 
             //跳跃
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space))
             {
                 OnJump?.Invoke();
             }

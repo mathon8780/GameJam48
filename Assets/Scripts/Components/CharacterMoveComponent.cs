@@ -18,7 +18,7 @@ namespace Components
         Rigidbody2D rb;
         CapsuleCollider2D capsuleCollider2D;
         StateControlComponent stateController;
-        AttributesComponent attributesComponent;
+        IAttribute _IAttributes;
 
         Vector2 moveInput = Vector2.zero;
 
@@ -30,7 +30,7 @@ namespace Components
         {
             rb = GetComponent<Rigidbody2D>();
             stateController = GetComponent<StateControlComponent>();
-            attributesComponent = GetComponent<AttributesComponent>();
+            _IAttributes = GetComponent<AttributesComponent>();
             capsuleCollider2D = GetComponent<CapsuleCollider2D>();
 
         }
@@ -46,13 +46,13 @@ namespace Components
             if (stateController.IsGround)
             {
                 stateController.Jump();
-                rb.velocity = new Vector2(rb.velocity.x, attributesComponent.GetAttributesValue(EAttributeType.JumpHeight));
+                rb.velocity = new Vector2(rb.velocity.x, _IAttributes.GetAttributesValue(EAttributeType.JumpHeight));
             }
         }
 
         void Update()
         {
-            rb.velocity = new Vector2(moveInput.x * attributesComponent.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
+            rb.velocity = new Vector2(moveInput.x * _IAttributes.GetAttributesValue(EAttributeType.MoveSpeed), rb.velocity.y);
             if(!stateController.IsGround)
             {
                 rb.velocity -= new Vector2(0, falling * Time.deltaTime * 1.1f);

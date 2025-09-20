@@ -21,5 +21,10 @@
         /// 攻击
         /// </summary>
         void Attack();
+
+        /// <summary>
+        /// 被攻击
+        /// </summary>
+        void BeAttacked();
     }
 }

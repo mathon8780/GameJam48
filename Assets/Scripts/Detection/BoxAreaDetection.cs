@@ -24,16 +24,23 @@ namespace Detection
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("Enter Interactive Area");
             if (other.CompareTag("Monster"))
             {
+                Transform otherTransform = other.GetComponent<Transform>();
+                if (otherTransform != null)
+                {
+                    
+                }
                 // _playerAttribute = other.GetComponent<IAttribute>();
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, true);
             }
         }
 
-        private void OnCollisionExit2D(Collision2D other)
+        private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.collider.CompareTag("Monster"))
+            Debug.Log("Exit Interactive Area");
+            if (other.CompareTag("Monster"))
             {
                 // _playerAttribute = other.collider.GetComponent<IAttribute>();
                 _playerAttribute?.SetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea, false);
