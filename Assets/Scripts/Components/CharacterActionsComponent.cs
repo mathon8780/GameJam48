@@ -6,12 +6,13 @@ namespace Components
     public class CharacterActionsComponent : MonoBehaviour, IActions
     {
         Animator animator;
-        IAttribute attribute;
+        IAttribute _IAttribute;
+
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            attribute = GetComponent<AttributesComponent>();
+            _IAttribute = GetComponent<AttributesComponent>();
         }
 
         public void Greeting()
@@ -21,6 +22,7 @@ namespace Components
 
         public void Chat()
         {
+
             animator.SetTrigger(AnimatorString.Chat);
         }
 
@@ -32,6 +34,11 @@ namespace Components
         public void Attack()
         {
             animator.SetTrigger(AnimatorString.Attack);
+        }
+
+        public void BeAttacked()
+        {
+            animator.SetTrigger(AnimatorString.BeAttacked);
         }
     }
 }

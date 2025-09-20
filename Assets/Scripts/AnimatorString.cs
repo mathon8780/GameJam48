@@ -15,4 +15,5 @@ class AnimatorString
     public static readonly string Greeting = "greeting";
     public static readonly string Chat = "chat";
     public static readonly string Roar = "roar";
+    public static readonly string BeAttacked = "beAttacked";
 }
