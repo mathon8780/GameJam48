@@ -22,7 +22,7 @@ namespace Components
 
         private void Awake()
         {
-            _iActions = GetComponent<IActions>();
+            _iActions = GetComponent<CharacterActionsComponent>();
             characterMoveComponent = GetComponent<CharacterMoveComponent>();
             stateController = GetComponent<StateControlComponent>();
 
@@ -46,24 +46,25 @@ namespace Components
             //左右移动
             if (Input.GetKey(KeyCode.A))
             {
-                OnMove?.Invoke(Vector2.left);
+                EventManager.Instance?.TriggerEvent<MoveEvent>(new MoveEvent(Vector2.left));
+                //OnMove?.Invoke(Vector2.left);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                OnMove?.Invoke(Vector2.right);
+                EventManager.Instance?.TriggerEvent<MoveEvent>(new MoveEvent(Vector2.right));
+                //OnMove?.Invoke(Vector2.right);
             }
 
             if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
             {
-                OnMove?.Invoke(Vector2.zero);
+                EventManager.Instance?.TriggerEvent<MoveEvent>(new MoveEvent(Vector2.zero));
+                //OnMove?.Invoke(Vector2.zero);
             }
 
             //跳跃
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //Debug.Log("Jump");
-                //EventManager.Instance.TriggerEvent<JumpEvent>();
-                OnJump?.Invoke();
+                EventManager.Instance?.TriggerEvent<JumpEvent>(new JumpEvent());
             }
         }
 

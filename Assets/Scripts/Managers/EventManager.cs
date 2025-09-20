@@ -68,6 +68,7 @@ namespace Managers
             Type eventType = typeof(T);
             if (_eventDic.TryGetValue(eventType, out var existingDelegate))
             {
+                Debug.Log($"Trigger event: {eventType.Name}");
                 (existingDelegate as UnityAction<T>)?.Invoke(content);
             }
         }

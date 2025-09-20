@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.DataConfig
 {
-    internal class EventTypes2
+    internal class MonsterEventTypes
     {
 
     }
 
-    public struct JumpEvent
-    {
-
-    }
 }
