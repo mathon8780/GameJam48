@@ -92,7 +92,7 @@ namespace Components
         /// </summary>
         void HandleInteraction()
         {
-            Debug.Log(_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea));
+            // Debug.Log(_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea));
             //交互区域判定
             if (!_iAttribute.GetRunTimeAttributeValue(ERunTimeAttributeType.InInteractiveArea)) return;
             // //地面判定

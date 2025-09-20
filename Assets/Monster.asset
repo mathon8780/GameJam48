@@ -15,16 +15,16 @@ MonoBehaviour:
   MoveSpeed: 3
   LeftDistance: 3
   RightDistance: 3
-  StartAnger: 0
+  StartAnger: 40
   FixedAnger: 0
-  StartChangeRange: 0
-  ThresholdA: 0
-  ThresholdAChangeRange: 0
+  StartChangeRange: 10
+  ThresholdA: 30
+  ThresholdAChangeRange: 5
   FixedThresholdA: 0
-  ThresholdB: 0
-  ThresholdBChangeRange: 0
+  ThresholdB: 60
+  ThresholdBChangeRange: 4
   FixedThresholdB: 0
-  MaxMistakes: 0
+  MaxMistakes: 3
   CurrentMistakes: 0
   Atk: 0
   AngerIncreaseRate: 0

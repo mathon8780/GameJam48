@@ -9,7 +9,9 @@ namespace Components
 {
     public class MonsterAttributesComponent : MonoBehaviour, IMonsterAttribute
     {
-        Animator animator;
+        private Animator _animator;
+
+        [SerializeField] private TextMesh value;
 
         //关联属性
         [SerializeField] private MonsterAttribute attributes;
@@ -27,7 +29,13 @@ namespace Components
             _runTimeAttributes = Instantiate(attributes);
             InitAttributes(_runTimeAttributes);
 
-            animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
+        }
+
+
+        private void Update()
+        {
+            value.text = (GetAttributesValue(EMonsterAttributeType.StartAnger) + GetAttributesValue(EMonsterAttributeType.FixedAnger)).ToString("F0");
         }
 
         private void InitAttributes(MonsterAttribute runTimeAttributes)
@@ -35,7 +43,6 @@ namespace Components
             //随机初始值
             runTimeAttributes.StartAnger += Random.Range(-runTimeAttributes.StartChangeRange, runTimeAttributes.StartChangeRange + 1);
         }
-
 
         /// <summary>
         /// 获得属性值
@@ -173,10 +180,10 @@ namespace Components
         public void SetMonsterState(EMonsterState state)
         {
             _runTimeAttributes.MonsterState = state;
-            switch(state)
+            switch (state)
             {
                 case EMonsterState.Patrol:
-                    animator.SetBool(AnimatorString.isMoving, true);
+                    _animator.SetBool(AnimatorString.isMoving, true);
                     break;
             }
         }
