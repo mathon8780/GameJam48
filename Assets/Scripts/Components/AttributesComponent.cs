@@ -1,6 +1,7 @@
 ﻿using System;
 using DataConfig;
 using Interfaces;
+using Managers;
 using UnityEngine;
 
 namespace Components
@@ -23,6 +24,17 @@ namespace Components
             _runTimeAttributes = Instantiate(attributes);
         }
 
+        private void OnEnable()
+        {
+            EventManager.Instance.RegisterEventListener<UpdatePlayerAttribute>(UpdatePlayerAttribute);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.Instance?.UnregisterEventListener<UpdatePlayerAttribute>(UpdatePlayerAttribute);
+        }
+
+
         /// <summary>
         /// 用于获取属性值
         /// </summary>
@@ -33,11 +45,11 @@ namespace Components
             switch (attributeType)
             {
                 case EAttributeType.HP:
-                    return _runTimeAttributes.Hp + _runTimeAttributes.FixedHp;
+                // return _runTimeAttributes.Hp + _runTimeAttributes.FixedHp;
                 case EAttributeType.MaxHP:
                     return _runTimeAttributes.MaxHp;
-                case EAttributeType.FixedHP:
-                    return _runTimeAttributes.FixedHp;
+                // case EAttributeType.FixedHP:
+                // return _runTimeAttributes.FixedHp;
                 case EAttributeType.MoveSpeed:
                     return _runTimeAttributes.MoveSpeed;
                 case EAttributeType.JumpHeight:
@@ -63,8 +75,8 @@ namespace Components
                 case EAttributeType.MaxHP:
                     _runTimeAttributes.MaxHp += (int)varValue;
                     break;
-                case EAttributeType.FixedHP:
-                    _runTimeAttributes.FixedHp += (int)varValue;
+                    // case EAttributeType.FixedHP:
+                    // _runTimeAttributes.FixedHp += (int)varValue;
                     break;
                 case EAttributeType.MoveSpeed:
                     _runTimeAttributes.MoveSpeed += varValue;
@@ -115,6 +127,34 @@ namespace Components
                     _runTimeAttributes.CanInteractive = value;
                     break;
             }
+        }
+
+
+        public void UpdatePlayerAttribute(UpdatePlayerAttribute date)
+        {
+            //最大血量 当前血量 移动速度 冷静力 
+            switch (date.attributeType)
+            {
+                case EUpgradeAttribute.MaxHp:
+                    SetAttributesValue(EAttributeType.MaxHP, date.varValue);
+                    SetAttributesValue(EAttributeType.HP, date.varValue);
+                    break;
+                case EUpgradeAttribute.CurrentHp:
+                    float maxHp = GetAttributesValue(EAttributeType.MaxHP);
+                    float currentHp = GetAttributesValue(EAttributeType.HP);
+                    float maxRecover = maxHp - currentHp;
+                    float finalRecover = Math.Min(maxRecover, date.varValue);
+                    SetAttributesValue(EAttributeType.HP, finalRecover);
+                    break;
+                case EUpgradeAttribute.MoveSpeed:
+                    SetAttributesValue(EAttributeType.MoveSpeed, date.varValue);
+                    break;
+                case EUpgradeAttribute.Calmness:
+                    SetAttributesValue(EAttributeType.Calmness, date.varValue);
+                    break;
+            }
+
+            Debug.Log("增加属性" + date.attributeType + " " + date.varValue);
         }
     }
 }

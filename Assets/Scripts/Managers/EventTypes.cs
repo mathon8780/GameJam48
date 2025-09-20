@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using DataConfig;
+using UnityEngine;
+
 //using System.Numerics;
 
 namespace Managers
@@ -35,27 +37,38 @@ namespace Managers
     public struct MoveEvent
     {
         public Vector2 moveInput;
+
         public MoveEvent(Vector2 moveInput)
         {
             this.moveInput = moveInput;
         }
     }
+
     // 跳跃事件
     public struct JumpEvent
     {
     }
+
     // 交互
     // 打招呼事件
     public struct GreetingEvent
     {
     }
+
     // 聊天事件
     public struct ChatEvent
     {
     }
+
     // 咆哮事件
     public struct RoarEvent
     {
     }
     /********************输入相关**********************/
+
+    public class UpdatePlayerAttribute
+    {
+        public EUpgradeAttribute attributeType;
+        public float varValue;
+    }
 }
