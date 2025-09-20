@@ -17,6 +17,10 @@ namespace Components
             _monsterAnimator = GetComponentInParent<Animator>();
         }
 
+        /// <summary>
+        /// 动画触发事件
+        /// </summary>
+        /// <param name="other"></param>
         private void OnTriggerEnter2D(Collider2D other)
         {
             //todo:统一配置属性获取

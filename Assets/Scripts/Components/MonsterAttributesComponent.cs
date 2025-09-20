@@ -2,6 +2,7 @@
 using DataConfig;
 using Interfaces;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 namespace Components
@@ -22,6 +23,13 @@ namespace Components
                 Debug.LogError("AttributesComponent: attributes is null");
 
             _runTimeAttributes = Instantiate(attributes);
+            InitAttributes(_runTimeAttributes);
+        }
+
+        private void InitAttributes(MonsterAttribute runTimeAttributes)
+        {
+            //随机初始值
+            runTimeAttributes.StartAnger += Random.Range(-runTimeAttributes.StartChangeRange, runTimeAttributes.StartChangeRange + 1);
         }
 
 
@@ -68,6 +76,10 @@ namespace Components
                     return _runTimeAttributes.AngerIncreaseRate;
                 case EMonsterAttributeType.CalmnessThreshold:
                     return _runTimeAttributes.CalmnessThreshold;
+                case EMonsterAttributeType.IsRampage:
+                    return _runTimeAttributes.IsRampage ? 1 : 0;
+                case EMonsterAttributeType.UpgradeValue:
+                    return _runTimeAttributes.UpgradeValue;
             }
 
             return 0;
@@ -127,6 +139,17 @@ namespace Components
                 case EMonsterAttributeType.CalmnessThreshold:
                     _runTimeAttributes.CalmnessThreshold += varValue;
                     break;
+                case EMonsterAttributeType.IsRampage:
+                    if (Mathf.Approximately(varValue, 1))
+                    {
+                        _runTimeAttributes.IsRampage = true;
+                    }
+                    else if (varValue == 0)
+                    {
+                        _runTimeAttributes.IsRampage = false;
+                    }
+
+                    break;
             }
         }
 
@@ -147,25 +170,9 @@ namespace Components
         {
         }
 
-
-        public bool GetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType)
+        public EUpgradeAttribute GetUpgradeAttribute()
         {
-            switch(runTimeAttributeType)
-            {
-                case EMonsterRunTimeAttributeType.InAnglerState:
-                    return _runTimeAttributes.InAnglerState;
-                case EMonsterRunTimeAttributeType.CanMove:
-                    return _runTimeAttributes.CanMove;
-                case EMonsterRunTimeAttributeType.IsMoving:
-                    return _runTimeAttributes.IsMoving;
-                default:
-                    return false;
-            }
-        }
-
-        public void SetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType, bool value)
-        {
-            return;
+            return _runTimeAttributes.UpgradeAttribute;
         }
     }
 }

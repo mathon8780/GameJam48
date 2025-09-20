@@ -47,7 +47,7 @@ namespace Interfaces
     {
         HP,
         MaxHP,
-        FixedHP,
+        // FixedHP,
         MoveSpeed,
         JumpHeight,
         Calmness,

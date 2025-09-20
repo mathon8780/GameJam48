@@ -30,21 +30,11 @@ namespace Interfaces
         /// <param name="state"></param>
         void SetMonsterState(EMonsterAttributeType state);
 
-        // void TakeInteractive(EInteractiveType interactiveType);
-
         /// <summary>
-        /// 获取怪物运行时状态
+        /// 获得升级增加属性
         /// </summary>
-        /// <param name="runTimeAttributeType">状态属性</param>
         /// <returns></returns>
-        bool GetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType);
-
-        /// <summary>
-        /// 设置怪物运行时状态
-        /// </summary>
-        /// <param name="runTimeAttributeType"></param>
-        /// <param name="value"></param>
-        void SetRunTimeAttributeValue(EMonsterRunTimeAttributeType runTimeAttributeType, bool value);
+        EUpgradeAttribute GetUpgradeAttribute();
     }
 
     /// <summary>
@@ -69,13 +59,8 @@ namespace Interfaces
         Atk, //攻击力
         AngerIncreaseRate, //愤怒增长速率
         CalmnessThreshold, //冷静阈值
-    }
-
-    public enum EMonsterRunTimeAttributeType
-    {
-        InAnglerState, //是否处于愤怒状态
-        IsMoving,
-        CanMove,
-        IsAlive
+        IsRampage, //暴走状态
+        UpgradeAttribute, //升级增加属性
+        UpgradeValue //升级增加数值
     }
 }

@@ -7,7 +7,7 @@ namespace DataConfig
     {
         [Tooltip("基础血量")] public float Hp;
         [Tooltip("最大血量")] public float MaxHp;
-        [Tooltip("修正血量")] public float FixedHp;
+        // [Tooltip("修正血量")] public float FixedHp;
         [Tooltip("移动速度")] public float MoveSpeed;
         [Tooltip("跳跃高度")] public float JumpHeight;
         [Tooltip("冷静力")] public float Calmness;
