@@ -69,6 +69,7 @@ namespace Components
         /// <param name="attacker"></param>
         public void Attacked(IAttribute attacker)
         {
+            _animator.SetTrigger(AnimatorString.BeAttacked);
             Debug.Log("Attacked");
             //不是暴走状态受击 更新两次
             if (!Mathf.Approximately(_monsterAttribute.GetAttributesValue(EMonsterAttributeType.IsRampage), 1))
