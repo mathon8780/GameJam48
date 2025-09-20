@@ -52,6 +52,9 @@ namespace Interfaces
     /// </summary>
     public enum EMonsterAttributeType
     {
+        MoveSpeed, //移动速度
+        LeftDistance, //左侧移动距离
+        RightDistance, //右侧移动距离
         StartAnger, //初始愤怒值
         FixedAnger, //修正愤怒值
         StartChangeRange, //初始变化范围
